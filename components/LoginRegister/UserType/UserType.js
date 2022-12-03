@@ -1,8 +1,7 @@
 import styles from './UserType.module.scss'
 import { useState } from 'react'
 
-function UserType(props) {
-  const [userType, setUserType] = useState("student");
+function UserType({ userType, setUserType }) {
   
   const clickStudent = (e) => {
     setUserType("student");
@@ -10,7 +9,6 @@ function UserType(props) {
   const clickCommunity = (e) => {
     setUserType("community");
   };
-
 
   if (userType === "student") {
     return (

@@ -5,6 +5,28 @@ import UserType from '../UserType/UserType';
 import { useState } from 'react';
 
 function Register() {
+  const [userType, setUserType] = useState("student");
+  const [user, setUser] = useState({ username: "", 
+                                     name: "", 
+                                     password: "", 
+                                     confirmPassword: "" 
+  });
+
+  const handleChange = (e) => {
+    const {name, value} = e.target; 
+    console.log(name, value);
+    setUser((prev) => {
+      return {...prev, [name]: value}
+    })
+  };
+
+  const handleClick = () => {
+    // If any of the fields are empty, alert the user
+    if (user.username === "" || user.name === "" || user.password === "" || user.confirmPassword === "") {
+      alert("Lütfen tüm alanları doldurunuz.");
+    }
+    // gerekli islemler yapilir. usertype kontrol edilir
+  };
 
   return (
     <div className={styles.register}>
@@ -13,25 +35,28 @@ function Register() {
         <p className={styles.logo}>cmis</p> <p>'e Kayıt Ol</p>
       </div>
       
-      <UserType />
+      <UserType userType={userType} setUserType={setUserType}/>
 
       <div className={styles.welcome}>
          <p>Yeni bir</p>
          <p className={styles.logo}>cmis</p> <p>hesabı oluşturun</p>
       </div>
 
-      <Input type={"text"} placeholder={"kullanıcı adı"} />
-      <Input type={"text"} placeholder={"isim ve soyisim"} />
-      <Input type={"password"} placeholder={"şifre"} />
-      <Input type={"password"} placeholder={"şifre tekrar"} />
+      <Input type={"text"} name='username' placeholder={"kullanıcı adı"} onChange={handleChange} />
+      
+      {userType === "student" ? 
+        <Input type={"text"} name='name' placeholder={"isim ve soyisim"} onChange={handleChange}/> :
+        <Input type={"text"} name='name' placeholder={"topluluk/takım adı"} onChange={handleChange} />    
+      }
+      <Input type={"password"} name='password' placeholder={"şifre"} onChange={handleChange} />
+      <Input type={"password"} name='confirmPassword' placeholder={"şifre tekrar"} onChange={handleChange} />
 
       <div className={styles.entrance}>
-        <a href="">Şifremi Unuttum</a>
-        <Button text={"Giriş"} />
+        <Button text={"Kayıt Ol"} onClick={handleClick}/>
       </div>
 
       <div className={styles.foot}>
-        <p className={styles.logo}>cmis</p> <p>hesabı oluşturmak için</p> <a href="">tıklayın</a>
+        <p className={styles.logo}>cmis</p> <p>hesabınızla giris yapmak için</p> <a href="">tıklayın</a>
       </div>
       
     </div>
