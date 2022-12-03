@@ -1,0 +1,21 @@
+@use 'styles/_macros' as *;
+
+.input {
+    width: 60%;
+    padding: 10px 10px; 
+    border: 1px solid #666;
+    border-radius: 8px;
+}
+
+.input:focus {
+    outline: none;
+    border: 2px solid #666;
+}
+
+.input::placeholder {
+    color: #999;
+}
+
+.input-error {
+    border: 2px solid $red;
+}
