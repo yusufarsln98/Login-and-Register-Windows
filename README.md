@@ -1,4 +1,4 @@
-## Login and Register pop-up windows with React and Next.js
+## Login and Register pop-up windows with React, Next.js, and SCSS.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
